@@ -1,0 +1,64 @@
+<svg width="1400" height="820" viewBox="0 0 1400 820" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1400" height="820" rx="34" fill="#08111F"/>
+  <rect x="44" y="44" width="1312" height="732" rx="28" fill="#0D1B2E" stroke="#213247"/>
+  <rect x="44" y="44" width="1312" height="72" rx="28" fill="#0A1626"/>
+  <circle cx="86" cy="80" r="10" fill="#FB7185"/>
+  <circle cx="118" cy="80" r="10" fill="#FBBF24"/>
+  <circle cx="150" cy="80" r="10" fill="#5EEAD4"/>
+  <text x="194" y="88" fill="#F8FBFF" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="900">CiteMind RAG</text>
+  <rect x="1110" y="66" width="152" height="30" rx="15" fill="#13243A"/>
+  <text x="1142" y="87" fill="#5EEAD4" font-family="Inter, Arial, sans-serif" font-size="14" font-weight="800">Indexed</text>
+  <rect x="80" y="156" width="314" height="560" rx="18" fill="#101F35" stroke="#253B55"/>
+  <text x="112" y="204" fill="#F8FBFF" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900">Knowledge Base</text>
+  <rect x="112" y="236" width="250" height="16" rx="8" fill="#344B66"/>
+  <rect x="112" y="272" width="220" height="16" rx="8" fill="#344B66"/>
+  <rect x="112" y="308" width="258" height="16" rx="8" fill="#344B66"/>
+  <rect x="112" y="344" width="184" height="16" rx="8" fill="#344B66"/>
+  <rect x="112" y="400" width="232" height="16" rx="8" fill="#344B66"/>
+  <rect x="112" y="436" width="206" height="16" rx="8" fill="#344B66"/>
+  <rect x="112" y="492" width="250" height="48" rx="12" fill="#132B46" stroke="#2E526E"/>
+  <text x="136" y="523" fill="#67E8F9" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="850">Chunk size: 380</text>
+  <rect x="112" y="566" width="250" height="48" rx="12" fill="#132B46" stroke="#2E526E"/>
+  <text x="136" y="597" fill="#A78BFA" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="850">Top K: 3</text>
+  <rect x="112" y="646" width="160" height="46" rx="10" fill="#5EEAD4"/>
+  <text x="142" y="675" fill="#07111F" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="900">Build Index</text>
+  <rect x="430" y="156" width="462" height="560" rx="18" fill="#101F35" stroke="#253B55"/>
+  <text x="462" y="204" fill="#F8FBFF" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900">Ask with Citations</text>
+  <rect x="462" y="236" width="386" height="52" rx="12" fill="#0D1B2E" stroke="#344B66"/>
+  <text x="488" y="268" fill="#93A4B8" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">How does retrieval reduce hallucination?</text>
+  <rect x="462" y="316" width="386" height="82" rx="16" fill="#132B46" stroke="#2E526E"/>
+  <text x="490" y="348" fill="#5EEAD4" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="900">ANSWER</text>
+  <rect x="490" y="368" width="298" height="12" rx="6" fill="#DDE7F3"/>
+  <rect x="490" y="390" width="244" height="12" rx="6" fill="#DDE7F3"/>
+  <rect x="462" y="432" width="386" height="226" rx="16" fill="#0D1B2E" stroke="#344B66"/>
+  <text x="490" y="470" fill="#F8FBFF" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="900">Pipeline Trace</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="15" font-weight="850">
+    <rect x="490" y="500" width="110" height="42" rx="21" fill="#132B46"/>
+    <text x="523" y="527" fill="#67E8F9">Ingest</text>
+    <rect x="620" y="500" width="110" height="42" rx="21" fill="#132B46"/>
+    <text x="653" y="527" fill="#5EEAD4">Chunk</text>
+    <rect x="490" y="562" width="110" height="42" rx="21" fill="#132B46"/>
+    <text x="516" y="589" fill="#A78BFA">Retrieve</text>
+    <rect x="620" y="562" width="110" height="42" rx="21" fill="#132B46"/>
+    <text x="655" y="589" fill="#FBBF24">Cite</text>
+  </g>
+  <rect x="928" y="156" width="392" height="560" rx="18" fill="#101F35" stroke="#253B55"/>
+  <text x="960" y="204" fill="#F8FBFF" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="900">Retrieved Sources</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <rect x="960" y="236" width="328" height="116" rx="16" fill="#132B46" stroke="#2E526E"/>
+    <text x="984" y="270" fill="#5EEAD4" font-size="16" font-weight="900">Chunk 2</text>
+    <text x="1224" y="270" fill="#FBBF24" font-size="16" font-weight="900">5.28</text>
+    <rect x="984" y="292" width="246" height="12" rx="6" fill="#DDE7F3"/>
+    <rect x="984" y="318" width="196" height="12" rx="6" fill="#DDE7F3"/>
+    <rect x="960" y="382" width="328" height="116" rx="16" fill="#132B46" stroke="#2E526E"/>
+    <text x="984" y="416" fill="#5EEAD4" font-size="16" font-weight="900">Chunk 1</text>
+    <text x="1224" y="416" fill="#FBBF24" font-size="16" font-weight="900">3.18</text>
+    <rect x="984" y="438" width="252" height="12" rx="6" fill="#DDE7F3"/>
+    <rect x="984" y="464" width="178" height="12" rx="6" fill="#DDE7F3"/>
+    <rect x="960" y="528" width="328" height="116" rx="16" fill="#132B46" stroke="#2E526E"/>
+    <text x="984" y="562" fill="#5EEAD4" font-size="16" font-weight="900">Chunk 4</text>
+    <text x="1224" y="562" fill="#FBBF24" font-size="16" font-weight="900">3.18</text>
+    <rect x="984" y="584" width="226" height="12" rx="6" fill="#DDE7F3"/>
+    <rect x="984" y="610" width="204" height="12" rx="6" fill="#DDE7F3"/>
+  </g>
+</svg>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CiteMind RAG | Local-first Retrieval Studio</title>
+    <meta
+      name="description"
+      content="CiteMind RAG is an original local-first RAG demo with chunking, retrieval ranking, citations, and answer synthesis in the browser."
+    >
+    <link rel="preload" href="assets/rag-product-preview.svg" as="image">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314b8a6'/%3E%3Ctext x='32' y='39' text-anchor='middle' font-family='Arial' font-size='22' font-weight='800' fill='%2307111f'%3ECM%3C/text%3E%3C/svg%3E">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="CiteMind RAG home">
+        <span class="brand-mark">CM</span>
+        <span>CiteMind RAG</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="#studio">Studio</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#features">Features</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Local-first RAG Studio</p>
+          <h1>Ask documents with citations, not hallucinations.</h1>
+          <p class="lede">
+            CiteMind RAG is a browser-based retrieval demo that chunks text, ranks relevant context, and generates an answer with source citations.
+            <br>
+            一个本地优先的 RAG 演示项目：文档切块、相关片段检索、引用回答，全部在浏览器中完成。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#studio">Try the Demo</a>
+            <a class="button secondary" href="https://github.com/jsdnaasd/citemind-rag">GitHub</a>
+          </div>
+        </div>
+        <figure class="hero-visual">
+          <img src="assets/rag-product-preview.svg" alt="CiteMind RAG dashboard preview">
+        </figure>
+      </section>
+
+      <section class="studio" id="studio">
+        <div class="section-heading">
+          <p class="eyebrow">RAG Studio</p>
+          <h2>Paste knowledge, ask a question, inspect the citations.</h2>
+          <p>粘贴知识文本，输入问题，查看检索片段和引用来源。</p>
+        </div>
+
+        <div class="workspace">
+          <section class="panel document-panel">
+            <div class="panel-heading">
+              <span>Knowledge Base</span>
+              <button class="ghost" id="reset-docs" type="button">Reset Sample</button>
+            </div>
+            <textarea id="document-input" spellcheck="false"></textarea>
+            <div class="controls">
+              <label>
+                Chunk size
+                <input id="chunk-size" type="range" min="220" max="620" step="40" value="380">
+              </label>
+              <label>
+                Top K
+                <input id="top-k" type="range" min="2" max="5" step="1" value="3">
+              </label>
+              <button class="button primary" id="index-button" type="button">Build Index</button>
+            </div>
+          </section>
+
+          <section class="panel query-panel">
+            <div class="panel-heading">
+              <span>Question</span>
+              <span class="status" id="index-status">Ready</span>
+            </div>
+            <input id="query-input" placeholder="How does CiteMind reduce hallucination risk?">
+            <button class="button primary full" id="ask-button" type="button">Retrieve & Answer</button>
+            <div class="answer">
+              <p class="answer-label">Answer</p>
+              <div id="answer-output"></div>
+            </div>
+          </section>
+
+          <aside class="panel citation-panel">
+            <div class="panel-heading">
+              <span>Retrieved Citations</span>
+              <span id="chunk-count">0 chunks</span>
+            </div>
+            <div id="citations"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="pipeline" id="pipeline">
+        <div class="section-heading">
+          <p class="eyebrow">Pipeline</p>
+          <h2>A transparent RAG flow for demos, teaching, and prototypes.</h2>
+          <p>清晰展示 RAG 的核心链路，适合演示、教学和产品原型。</p>
+        </div>
+        <div class="steps">
+          <article>
+            <span>01</span>
+            <h3>Ingest</h3>
+            <p>Paste raw notes, docs, product specs, or research snippets into the browser.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Chunk</h3>
+            <p>Split text into overlapping context windows that can be scored independently.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Retrieve</h3>
+            <p>Rank chunks using local lexical vector scoring with query-aware weighting.</p>
+          </article>
+          <article>
+            <span>04</span>
+            <h3>Cite</h3>
+            <p>Produce a concise answer with visible source cards and confidence signals.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <div>
+          <p class="eyebrow">Features</p>
+          <h2>Built small, readable, and easy to extend.</h2>
+        </div>
+        <div class="feature-list">
+          <div>Browser-only demo, no backend required</div>
+          <div>Document chunking with adjustable chunk size</div>
+          <div>TF-IDF style local retrieval scoring</div>
+          <div>Answer synthesis with source references</div>
+          <div>English + Chinese project presentation</div>
+          <div>Ready for GitHub Pages deployment</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>CiteMind RAG</span>
+      <span>Original local-first RAG project</span>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
