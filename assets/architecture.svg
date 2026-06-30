@@ -1,0 +1,34 @@
+<svg width="1200" height="360" viewBox="0 0 1200 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="360" rx="26" fill="#07111f"/>
+  <rect x="42" y="46" width="1116" height="268" rx="20" fill="#0f1d2d" stroke="#23364d"/>
+  <text x="70" y="90" fill="#e7eef7" font-family="Arial, sans-serif" font-size="28" font-weight="700">CiteMind RAG data flow</text>
+  <text x="70" y="122" fill="#94a3b8" font-family="Arial, sans-serif" font-size="16">All processing runs inside the browser. No backend and no external API call.</text>
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(70 168)">
+      <rect width="180" height="92" rx="14" fill="#13283a" stroke="#2c475f"/>
+      <text x="22" y="38" fill="#ffffff" font-size="18" font-weight="700">Source text</text>
+      <text x="22" y="64" fill="#9fb1c5" font-size="14">pasted by user</text>
+    </g>
+    <path d="M270 214H335" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M335 214L322 205V223L335 214Z" fill="#14b8a6"/>
+    <g transform="translate(355 168)">
+      <rect width="180" height="92" rx="14" fill="#13283a" stroke="#2c475f"/>
+      <text x="22" y="38" fill="#ffffff" font-size="18" font-weight="700">Chunking</text>
+      <text x="22" y="64" fill="#9fb1c5" font-size="14">overlap windows</text>
+    </g>
+    <path d="M555 214H620" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M620 214L607 205V223L620 214Z" fill="#14b8a6"/>
+    <g transform="translate(640 168)">
+      <rect width="180" height="92" rx="14" fill="#13283a" stroke="#2c475f"/>
+      <text x="22" y="38" fill="#ffffff" font-size="18" font-weight="700">TF-IDF score</text>
+      <text x="22" y="64" fill="#9fb1c5" font-size="14">rank top-k chunks</text>
+    </g>
+    <path d="M840 214H905" stroke="#14b8a6" stroke-width="4" stroke-linecap="round"/>
+    <path d="M905 214L892 205V223L905 214Z" fill="#14b8a6"/>
+    <g transform="translate(925 168)">
+      <rect width="180" height="92" rx="14" fill="#13283a" stroke="#2c475f"/>
+      <text x="22" y="38" fill="#ffffff" font-size="18" font-weight="700">Answer</text>
+      <text x="22" y="64" fill="#9fb1c5" font-size="14">with citation cards</text>
+    </g>
+  </g>
+</svg>

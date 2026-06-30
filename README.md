@@ -1,86 +1,75 @@
 # CiteMind RAG
 
-<p align="center">
-  <img src="assets/rag-product-preview.svg" alt="CiteMind RAG dashboard preview" width="100%" />
-</p>
+Browser-based RAG playground for showing the retrieval step, not just the final answer.
 
-<h1 align="center">CiteMind RAG</h1>
+中文说明：这是一个浏览器端 RAG 小项目，重点展示“文档如何被切块、问题如何命中片段、回答引用了哪些来源”。
 
-<p align="center">
-  <strong>Local-first Retrieval-Augmented Generation Studio · 本地优先的 RAG 检索增强生成工作台</strong>
-</p>
+[Live demo](https://jsdnaasd.github.io/citemind-rag/) · [Repository](https://github.com/jsdnaasd/citemind-rag)
 
 <p align="center">
-  CiteMind RAG is an original browser-based RAG demo with document chunking, local retrieval scoring, citation cards, and answer synthesis.
-  <br />
-  CiteMind RAG 是一个原创浏览器端 RAG 项目，支持文档切块、本地检索评分、引用片段和答案合成。
+  <img src="assets/screenshot.png" alt="CiteMind RAG live demo screenshot" width="100%" />
 </p>
 
-<p align="center">
-  <a href="https://github.com/jsdnaasd/citemind-rag/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/jsdnaasd/citemind-rag?style=for-the-badge"></a>
-  <img alt="RAG" src="https://img.shields.io/badge/RAG-Citation%20Studio-14B8A6?style=for-the-badge">
-  <img alt="Vanilla JS" src="https://img.shields.io/badge/Vanilla%20JS-No%20Backend-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-  <img alt="GitHub Pages" src="https://img.shields.io/badge/GitHub%20Pages-Ready-111827?style=for-the-badge">
-</p>
+## What Is Implemented
 
----
+- Paste source text into a local knowledge area.
+- Split text into overlapping chunks in the browser.
+- Build a simple document-frequency map for the chunks.
+- Score chunks against a query with a TF-IDF style lexical scorer.
+- Show the top-k chunks as citation cards with scores.
+- Draft a short answer from the highest-ranked context and show chunk references.
 
-## Why
+中文：
 
-Many RAG demos hide the retrieval step. CiteMind makes the retrieval loop visible: users can paste source text, build chunks, ask a question, inspect ranked citations, and see how an answer should be grounded.
+- 粘贴知识文本。
+- 在浏览器里把文本切成带重叠的 chunk。
+- 为 chunk 构建词频和文档频率索引。
+- 用轻量 TF-IDF 风格算法对问题和 chunk 做匹配。
+- 展示 top-k 引用片段、分数和内容。
+- 根据命中的片段生成一个带引用编号的回答草稿。
 
-很多 RAG 项目只展示最终回答，但真正重要的是“回答来自哪里”。CiteMind 把检索过程展示出来：文档如何切块、哪些片段被命中、分数是多少、答案引用了哪些来源。
+## Retrieval Logic
 
-## What It Does
+The retrieval code lives in [`script.js`](script.js). It intentionally stays small so the ranking behavior is easy to inspect.
 
-- **Document ingestion**: paste raw notes, docs, specs, or research text.
-- **Chunking**: split long text into adjustable context windows.
-- **Local retrieval**: rank chunks with a TF-IDF style lexical scorer.
-- **Citations**: show source cards with scores and snippets.
-- **Answer synthesis**: produce a grounded answer from retrieved chunks.
+```text
+source text
+  -> normalize whitespace
+  -> split into overlapping chunks
+  -> tokenize each chunk
+  -> count document frequency per token
+  -> tokenize query
+  -> score each chunk with tf * idf
+  -> return top-k chunks
+  -> draft answer with chunk references
+```
 
-- **文档导入**：粘贴笔记、文档、产品说明或研究资料。
-- **文本切块**：把长文档拆成可检索的上下文片段。
-- **本地检索**：使用轻量 TF-IDF 风格评分进行排序。
-- **引用展示**：展示命中的来源片段、分数和内容。
-- **答案合成**：基于检索片段生成可追溯回答。
+Current scoring formula:
+
+```text
+score(chunk, query) = sum(tf(token, chunk) * idf(token))
+idf(token) = log((chunk_count + 1) / (doc_frequency(token) + 1)) + 1
+```
+
+This is not semantic search. It is a readable baseline that makes the retrieval loop visible.
+
+中文：当前版本不是语义向量检索，而是一个可读性优先的关键词检索基线，用来展示 RAG 的基本流程。
 
 ## Architecture
 
-```text
-Document Text
-  -> Chunking
-  -> Tokenization
-  -> Local Retrieval Scoring
-  -> Ranked Citations
-  -> Grounded Answer Draft
-```
+<p align="center">
+  <img src="assets/architecture.svg" alt="CiteMind RAG architecture" width="100%" />
+</p>
 
-Production extensions:
+The app has no backend and no external API calls. All state stays in the browser tab.
 
-- embedding model integration
-- vector database adapter
-- hybrid keyword + semantic retrieval
-- reranker layer
-- PDF / Markdown loaders
-- LLM answer generation with strict citations
-- evaluation and observability dashboard
-
-生产化扩展方向：
-
-- 接入 embedding 模型
-- 接入向量数据库
-- 混合关键词与语义检索
-- 增加 reranker 重排层
-- 支持 PDF / Markdown 文档解析
-- 接入大模型生成带引用回答
-- 增加评测与可观测性面板
+中文：项目没有后端，也不调用外部 API。所有处理都在当前浏览器标签页里完成。
 
 ## Run Locally
 
-This project is static and does not require a backend.
-
 ```bash
+git clone https://github.com/jsdnaasd/citemind-rag.git
+cd citemind-rag
 python3 -m http.server 5173
 ```
 
@@ -90,17 +79,63 @@ Open:
 http://localhost:5173
 ```
 
+## Verification
+
+Manual check:
+
+```bash
+python3 -m http.server 5173
+```
+
+Then open the page and test:
+
+- click `Reset Sample`
+- change `Chunk size`
+- change `Top K`
+- ask `How does CiteMind make RAG answers easier to verify?`
+- confirm the answer changes with the retrieved citation cards
+
+Lightweight static check:
+
+```bash
+python3 -m http.server 5173
+curl -I http://localhost:5173
+```
+
+中文：这个项目目前没有自动化测试。验证方式是本地启动静态服务，检查页面、检索结果和 citation cards 是否正常更新。
+
+## Known Limitations
+
+- No embeddings or vector database.
+- No PDF, Markdown, or URL loader.
+- No LLM API call; answer drafting is a deterministic browser function.
+- No persisted knowledge base.
+- The tokenizer is simple and works best for English text.
+- Retrieval quality depends heavily on exact term overlap.
+
+中文限制：
+
+- 没有接入 embedding 模型或向量数据库。
+- 不支持 PDF、Markdown、网页链接导入。
+- 没有调用大模型，回答只是前端函数生成的草稿。
+- 知识库不会持久保存。
+- 分词器很轻量，对英文更友好。
+- 检索质量依赖关键词重合，不等同于生产级 RAG。
+
 ## Roadmap
 
-- PDF and Markdown import
-- Browser-side embedding demo
-- Citation highlighting inside source text
-- Evaluation set for retrieval quality
-- Exportable RAG report
-- Optional OpenAI / local model connector
+- Add Markdown and PDF import.
+- Add browser-side embedding experiment.
+- Add source text highlighting for cited chunks.
+- Add retrieval evaluation examples.
+- Add optional OpenAI or local model answer generation.
+- Add exportable RAG report.
 
-## Disclaimer
+中文下一步：
 
-This is an engineering demo for learning and prototyping RAG. It does not claim production retrieval accuracy or LLM answer quality.
-
-本项目用于 RAG 工程学习和产品原型展示，不声明具备生产级检索准确性或大模型回答质量。
+- 增加 Markdown / PDF 导入。
+- 尝试浏览器端 embedding。
+- 在原文中高亮被引用片段。
+- 加入检索效果评测样例。
+- 可选接入 OpenAI 或本地模型生成回答。
+- 支持导出 RAG 报告。
